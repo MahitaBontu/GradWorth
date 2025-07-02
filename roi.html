@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GradWorth - Know Before You Owe</title>
   <style>
     body {
@@ -78,23 +78,48 @@
       font-size: 0.9rem;
     }
   </style>
+  <script src="roi.js"></script>
 </head>
 <body>
   <section class="hero">
     <div class="hero-content">
-      <h1><span class="gradient-text">Know Before</span><br/>You Owe</h1>
-      <p>Make informed decisions about your education investment with AI-powered ROI analysis</p>
+      <h1>
+        <span class="gradient-text">Know Before</span><br />
+        You Owe
+      </h1>
+      <p>
+        Make informed decisions about your education investment with AI-powered ROI analysis
+      </p>
       <a href="index.html" class="cta-button">Try GradWorth →</a>
     </div>
     <div class="hero-card">
       <div class="score-circle">83</div>
       <div class="metrics">
-        <div class="metric"><strong>$65K</strong><br/>Avg Salary</div>
-        <div class="metric"><strong>3.2x</strong><br/>ROI Multiple</div>
-        <div class="metric"><strong>8 yrs</strong><br/>Payback</div>
-        <div class="metric"><strong>92%</strong><br/>Job Rate</div>
+        <div class="metric">
+          <strong>$65K</strong><br />
+          Avg Salary
+        </div>
+        <div class="metric">
+          <strong>3.2x</strong><br />
+          ROI Multiple
+        </div>
+        <div class="metric">
+          <strong>8 yrs</strong><br />
+          Payback
+        </div>
+        <div class="metric">
+          <strong>92%</strong><br />
+          Job Rate
+        </div>
       </div>
     </div>
   </section>
+
+  <label for="schoolDropdown">Select a School:</label>
+  <select id="schoolDropdown" onchange="onSchoolChange()">
+    <option value="">-- Choose a School --</option>
+  </select>
+
+  <div id="roiResult" style="margin-top: 20px; font-weight: bold;"></div>
 </body>
 </html>
