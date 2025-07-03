@@ -427,6 +427,43 @@
     </div>
 
     <script>
+        // Load universities from College Scorecard data
+        async function loadUniversities() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/mahitabontu/GradWorth/main/roi_institution_data.json');
+                const data = await response.json();
+                
+                const dropdown = document.getElementById('college');
+                dropdown.innerHTML = '<option value="">Select a college...</option>';
+                
+                // Sort universities alphabetically
+                data.sort((a, b) => a.school.localeCompare(b.school));
+                
+                data.forEach((uni) => {
+                    const option = document.createElement('option');
+                    option.value = uni.school;
+                    option.textContent = `${uni.school} - ${uni.city}, ${uni.state}`;
+                    dropdown.appendChild(option);
+                });
+                
+                // Save data globally
+                window.universityData = data;
+
+                // Auto-fill tuition when university is selected
+                dropdown.addEventListener('change', function() {
+                    const selectedUni = window.universityData.find(u => u.school === this.value);
+                    if (selectedUni && selectedUni.tuition_in_state) {
+                        document.getElementById('tuition').value = selectedUni.tuition_in_state;
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading universities:', error);
+            }
+        }
+        
+        // Load universities when page loads
+        document.addEventListener('DOMContentLoaded', loadUniversities);
+
         // Mock data for demonstration - in production, this would call your FastAPI backend
         const salaryData = {
             'Computer Science': { base: 95000, growth: 0.06, stability: 0.95 },
